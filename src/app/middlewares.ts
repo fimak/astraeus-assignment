@@ -1,14 +1,14 @@
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
-import { increment } from '../features/counter/counterSlice';
+import { Middleware } from '@reduxjs/toolkit';
+import { incrementIfLessThanParam } from '../features/counter/counterSlice';
 
 /**
  * Timer middleware which increment state every second
  * @param dispatch
  */
-const timer = ({ dispatch }: { dispatch: Dispatch }) => {
-  setInterval(() => dispatch(increment()), 1000);
+const timer: Middleware = ({ dispatch }) => {
+  setInterval(() => dispatch(incrementIfLessThanParam(10)), 1000);
 
-  return (next: Dispatch) => (action: AnyAction) => {
+  return (next) => (action) => {
     next(action);
   };
 };

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
 export interface CounterState {
@@ -22,10 +22,15 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
+    incrementIfLessThanParam: (state, action: PayloadAction<number>) => {
+      if (state.value < action.payload) {
+        state.value += 1;
+      }
+    }
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { increment, decrement, incrementIfLessThanParam } = counterSlice.actions;
 
 export const selectCount = (state: RootState) => state.counter.value;
 
