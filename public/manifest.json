@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Counter App",
+  "name": "Counter Test App for Astraeus Health Corporation",
   "icons": [
     {
       "src": "favicon.ico",
