@@ -3,7 +3,9 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 
 /**
- * Main component - App
+ * Main component - Application Counter
+ * Features of Counter: Increment & Decrement value
+ * In the meantime, value increments by middleware every 1 second.
  * @constructor
  */
 function App() {
