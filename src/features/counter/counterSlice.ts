@@ -22,15 +22,17 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
-    incrementIfLessThanParam: (state, action: PayloadAction<number>) => {
-      if (state.value < action.payload) {
+    updateWithCondition: (state, action: PayloadAction<number>) => {
+      if (state.value >= 0 && state.value < action.payload) {
         state.value += 1;
+      } else if (state.value <= 0) {
+        state.value -= 1;
       }
     }
   },
 });
 
-export const { increment, decrement, incrementIfLessThanParam } = counterSlice.actions;
+export const { increment, decrement, updateWithCondition } = counterSlice.actions;
 
 export const selectCount = (state: RootState) => state.counter.value;
 
