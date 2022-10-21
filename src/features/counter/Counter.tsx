@@ -8,9 +8,22 @@ import {
 } from './counterSlice';
 import styles from './Counter.module.css';
 
+/**
+ * Counter component
+ * @constructor
+ */
 export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+
+  /**
+   * Decrement Handler
+   */
+  const handleDecrement = () => dispatch(decrement());
+  /**
+   * Increment Handler
+   */
+  const handleIncrement = () => dispatch(increment());
 
   return (
     <div>
@@ -18,7 +31,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={handleDecrement}
         >
           -
         </button>
@@ -26,7 +39,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={handleIncrement}
         >
           +
         </button>

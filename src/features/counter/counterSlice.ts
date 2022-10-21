@@ -9,6 +9,9 @@ const initialState: CounterState = {
   value: 0,
 };
 
+/**
+ * Counter Slice instance
+ */
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
