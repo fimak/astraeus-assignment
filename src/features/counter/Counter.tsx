@@ -20,6 +20,11 @@ export function Counter() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const date = new Date();
+    console.log(`Counter mounted at ${date.toLocaleString()}`);
+  }, []);
+
+  useEffect(() => {
     if (
       (count === 20)
       || (count === 21 && [2, 3].includes(incrementAmount))
