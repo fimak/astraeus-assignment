@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   decrement,
   increment,
   selectCount,
+  selectIncrementAmount,
+  setIncrementAmount
 } from './counterSlice';
 import styles from './Counter.module.css';
 
@@ -14,22 +16,22 @@ import styles from './Counter.module.css';
  */
 export function Counter() {
   const count = useAppSelector(selectCount);
+  const incrementAmount = useAppSelector(selectIncrementAmount);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (count === 20) {
+    if (
+      (count === 20)
+      || (count === 21 && [2, 3].includes(incrementAmount))
+      || (count === 22 && incrementAmount === 3)
+    ) {
       setTimeout(() => alert('Counter reaches 20!'), 10);
     }
   }, [count])
 
-  /**
-   * Decrement Handler
-   */
   const handleDecrement = () => dispatch(decrement());
-  /**
-   * Increment Handler
-   */
   const handleIncrement = () => dispatch(increment());
+  const handleSetIncrementAmount = (e: ChangeEvent<HTMLSelectElement>) => dispatch(setIncrementAmount(+e.target.value));
 
   return (
     <div>
@@ -49,6 +51,18 @@ export function Counter() {
         >
           +
         </button>
+      </div>
+      <div className={styles.row}>
+        <select
+          className={styles.selectBox}
+          aria-label="Set increment amount"
+          value={incrementAmount}
+          onChange={handleSetIncrementAmount}
+        >
+          {[1, 2, 3].map((element) => (
+            <option key={element} value={element}>{element}</option>
+          ))}
+        </select>
       </div>
     </div>
   );

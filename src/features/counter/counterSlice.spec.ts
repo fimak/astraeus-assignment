@@ -7,6 +7,7 @@ import counterReducer, {
 describe('counter reducer', () => {
   const initialState: CounterState = {
     value: 3,
+    incrementAmount: 1
   };
   it('should handle initial state', () => {
     expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
