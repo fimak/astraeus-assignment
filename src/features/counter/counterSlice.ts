@@ -32,7 +32,8 @@ export const counterSlice = createSlice({
       }
     },
     setIncrementAmount: (state, action: PayloadAction<number>) => {
-      state.incrementAmount = action.payload;
+      const incrementAmount = action.payload > 3 ? 3 : action.payload < 1 ? 1 : action.payload;
+      state.incrementAmount = incrementAmount;
     },
   },
 });
