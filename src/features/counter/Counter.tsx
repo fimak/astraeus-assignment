@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
@@ -15,6 +15,12 @@ import styles from './Counter.module.css';
 export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (count === 20) {
+      setTimeout(() => alert('Counter reaches 20!'), 10);
+    }
+  }, [count])
 
   /**
    * Decrement Handler
